@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React,{ Component } from 'react'
+
+import { CardList } from './component/card-list/card-list.jsx'
+
+import { SearchBox } from './component/searchbox/searchbox'
+
 import './App.css';
 
-function App() {
+class  App extends Component {
+
+   constructor (){
+     super();
+
+     this.state = {
+       peoples : [],
+       searchFeild : ''
+     };
+
+   }
+
+   componentDidMount () {
+     fetch(`https:jsonplaceholder.typicode.com/users`)
+     .then(response => response.json())
+     .then(users => this.setState({peoples: users}))
+   }
+
+  handleChange = (e) => {
+    this.setState({ searchFeild: e.target.value })
+  }
+
+  render() {
+   const { peoples, searchFeild } = this.state
+   const filteredPeoples = peoples.filter(people =>
+        people.name.toLowerCase().includes(searchFeild.toLowerCase())
+    )
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>People's Profile</h1>
+      <SearchBox
+        placeholder='search for people'
+        handleChange={this.handleChange}
+      /> 
+     <CardList peoples={filteredPeoples}/>
     </div>
   );
 }
+}
+  
 
 export default App;

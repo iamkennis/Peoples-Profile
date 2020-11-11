@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "Victor Mono Medium",
+    "font-switcher.fontFamily": "Victor Mono Medium ",
+    "font-switcher.enableLivePreview": true,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "Victor Mono Medium",
+    "debug.console.fontFamily": "Victor Mono Medium ",
+    "scm.inputFontFamily": "Victor Mono Medium ",
+    "editor.formatOnType": true,
+    "editor.fontWeight": null
+}
